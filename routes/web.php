@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dash\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -23,12 +24,16 @@ Route::group(
 
         Route::get('/', function () {
             return view('front.index');
-        });
+        })->name('main');
 
         Route::middleware(['auth', 'verified' ,'dashboardAccess'])->as('dashboard.')->prefix('dashboard')->group(function () {
             Route::get('/', function () {
                 return view('dash.index');
-            });
+            })->name('main');
+
+            Route::resources([
+                'users' => UserController::class ,
+            ]);
         });
         Route::middleware('auth')->as('profile.')->group(function () {
             Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');

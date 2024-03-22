@@ -199,6 +199,11 @@
 
                                             @auth
                                             <ul>
+                                                @if(Auth::user()->role == 'super_admin')
+                                                <li>
+                                                    <a href="{{ route('dashboard.main') }}">Dashboard</a>
+                                                </li>
+                                                @endif
                                                 <li>
                                                     <form action="{{ route('logout') }}" method="post">
                                                         @csrf

@@ -16,7 +16,8 @@ class dashAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin') {
+        $user = Auth::user();
+        if($user->hasRole('super_admin|admin')) {
             return $next($request);
         } else {
             abort(403);

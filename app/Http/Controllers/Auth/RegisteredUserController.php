@@ -46,6 +46,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        $user->addRole('user');
+
         return redirect(RouteServiceProvider::HOME);
     }
 }
