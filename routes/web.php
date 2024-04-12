@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\Dash\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\Dash\UserController;
+use App\Http\Controllers\Dash\CategoryController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -22,10 +26,10 @@ Route::group(
     ],
     function () {
 
-        Route::get('/', function () {
-            return view('front.index');
-        })->name('main');
-
+        Route::get('/', [HomePageController::class , 'index'])->name('main');
+        Route::resources([
+            'carts' => CartController::class ,
+        ]);
         Route::middleware(['auth', 'verified' ,'dashboardAccess'])->as('dashboard.')->prefix('dashboard')->group(function () {
             Route::get('/', function () {
                 return view('dash.index');
@@ -33,6 +37,9 @@ Route::group(
 
             Route::resources([
                 'users' => UserController::class ,
+                'categories' => CategoryController::class ,
+                'products' => ProductController::class ,
+
             ]);
         });
         Route::middleware('auth')->as('profile.')->group(function () {

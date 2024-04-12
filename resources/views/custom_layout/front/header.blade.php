@@ -117,8 +117,8 @@
                             <div class="menu-left">
                                 <div class="brand-logo">
                                     <a href="index.htm">
-                                        <img src="{{ asset('front/assets/images/logo.png') }}" class="h-logo img-fluid blur-up lazyload"
-                                            alt="logo">
+                                        <img src="{{ asset('front/assets/images/logo.png') }}"
+                                            class="h-logo img-fluid blur-up lazyload" alt="logo">
                                     </a>
                                 </div>
 
@@ -137,10 +137,14 @@
                                                     </span>
                                                 </div>
                                             </li>
-                                            <li><a href="index.htm" class="nav-link menu-title">{{ __('Home22') }}</a></li>
-                                            <li><a href="shop.html" class="nav-link menu-title">{{ trans('main.shop') }}</a></li>
-                                            <li><a href="cart/list.html" class="nav-link menu-title">@lang('main.cart')</a></li>
-                                            <li><a href="about-us.html" class="nav-link menu-title">{{ Lang::get('About Us') }}</a></li>
+                                            <li><a href="index.htm" class="nav-link menu-title">{{ __('Home22') }}</a>
+                                            </li>
+                                            <li><a href="shop.html" class="nav-link menu-title">{{ trans('main.shop')
+                                                    }}</a></li>
+                                            <li><a href="cart/list.html"
+                                                    class="nav-link menu-title">@lang('main.cart')</a></li>
+                                            <li><a href="about-us.html" class="nav-link menu-title">{{ Lang::get('About
+                                                    Us') }}</a></li>
                                             <li><a href="contact-us.html" class="nav-link menu-title">Contact Us</a>
                                             </li>
                                             <li><a href="blog.html" class="nav-link menu-title">Blog</a></li>
@@ -151,12 +155,14 @@
                             <div class="menu-right">
                                 <div class="onhover-dropdown wislist-dropdown">
                                     <ul>
-                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                            <li>
-                                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                                    {{ $properties['native'] }}
-                                                </a>
-                                            </li>
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode =>
+                                        $properties)
+                                        <li>
+                                            <a rel="alternate" hreflang="{{ $localeCode }}"
+                                                href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                {{ $properties['native'] }}
+                                            </a>
+                                        </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -178,7 +184,7 @@
                                     </li>
                                     <li class="onhover-dropdown wislist-dropdown">
                                         <div class="cart-media">
-                                            <a href="cart/list.html">
+                                            <a href="{{ route('carts.index') }}">
                                                 <i data-feather="shopping-cart"></i>
                                                 <span id="cart-count" class="label label-theme rounded-pill">
                                                     0
